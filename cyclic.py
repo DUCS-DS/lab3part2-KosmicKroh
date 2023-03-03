@@ -13,20 +13,18 @@ def llprint(lst, num):
 
 def find_cycle(lst):
     """return the start index and length of the cycle"""
-    tortoise = lst.head
-    hare = lst.head
+    tortoise = lst.head.next
+    hare = lst.head.next.next
     # Find two of the same value
     print("Start...")
-    tortoise = tortoise.next # Move 1 Step
-    hare = hare.next.next # Move 2 Steps
-    while tortoise.val != hare.val and hare.next.next:
+    while tortoise is not hare:
         tortoise = tortoise.next # Move 1 Step
         hare = hare.next.next # Move 2 Steps
     print("Same values found!")
     mu = 0
     tortoise = lst.head
     # Find the start of the cycle
-    while tortoise.val != hare.val and hare.next:
+    while tortoise is not hare:
         tortoise = tortoise.next
         hare = hare.next
         mu += 1
@@ -34,7 +32,7 @@ def find_cycle(lst):
     lam = 1
     hare = tortoise.next
     # Find the length of the cycle
-    while tortoise.val != hare.val and hare.next:
+    while tortoise is not hare:
         hare = hare.next
         lam += 1
     print("Length of cycle found!",lam)
